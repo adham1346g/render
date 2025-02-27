@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .heading {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Form Styles */
+        .form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input {
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .forgot-password {
+            text-align: right;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .forgot-password a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .login-button {
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Register Section */
+        .register-section {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .register-section a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .register-section a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">Sign In</div>
+        <form action="/login" method="POST" class="form">
+            <input required="" class="input" type="email" name="email" id="email" placeholder="E-mail">
+            <input required="" class="input" type="password" name="password" id="password" placeholder="Password">
+            <input class="login-button" type="submit" value="Sign In">
+        </form>
+
+        <!-- Register Section -->
+        <div class="register-section">
+            <p>Don't have an account? <a href="/register">Register here</a></p>
+        </div>
+    </div>
+</body>
+
+<script>
+    // Function to check login status from the backend
+    async function checkLoginStatus() {
+        try {
+            const response = await fetch('/check-login-status');
+            const data = await response.json();
+            return data.logged_in; // Assume backend returns { logged_in: true/false }
+        } catch (error) {
+            console.error('Error checking login status:', error);
+            return false;
+        }
+    }
+
+    // Function to update the UI based on login status
+    async function updateUI() {
+        const isLoggedIn = await checkLoginStatus();
+
+        if (isLoggedIn) {
+            document.getElementById('login-register-buttons').style.display = 'none';
+            document.getElementById('logged-in-buttons').style.display = 'block';
+        } else {
+            document.getElementById('login-register-buttons').style.display = 'block';
+            document.getElementById('logged-in-buttons').style.display = 'none';
+        }
+    }
+
+    // Call the function to update the UI when the page loads
+    updateUI();
+</script>
+</body>
+</html>

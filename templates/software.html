@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Software Services</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .card h2 {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .card button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .card button:hover {
+            background-color: #0056b3;
+        }
+        li {
+          list-style: none;
+          margin: 20px;
+      }
+      
+      li a {
+          text-decoration: none;
+          background-color: #007bff;
+          color: white;
+          padding: 10px 20px;
+          border-radius: 5px;
+          font-weight: bold;
+          transition: background-color 0.3s ease-in-out;
+      }
+      
+      li a:hover {
+          background-color: #0056b3;
+      }
+      
+    </style>
+</head>
+<body>
+  <li><a href="/">Home</a></li>
+  <li><a href="/jobs">Ny-Night Projects</a></li>
+    <h1>Our Software Services</h1>
+    <div class="container">
+        <div class="card">
+            <h2><img src="https://cdn-icons-png.flaticon.com/512/1828/1828469.png" alt="Web"> Websites</h2>
+            <p>Build stunning, responsive websites that engage your audience and drive conversions.</p>
+            <button onclick="window.location.href='web'">Learn More</button>
+        </div>
+        <div class="card">
+            <h2><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="iOS"> Mobile App for iPhone</h2>
+            <p>Create intuitive and feature-rich mobile applications for iOS devices.</p>
+            <button onclick="window.location.href='ios'">Learn More</button>
+
+        </div>
+        <div class="card">
+            <h2><img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg" alt="Android"> Mobile App for Android</h2>
+            <p>Develop powerful and user-friendly mobile applications for Android devices.</p>
+            <button onclick="window.location.href='android'">Learn More</button>
+        </div>
+    </div>
+</body>
+</html>

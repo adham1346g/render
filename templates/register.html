@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .heading {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input {
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .register-button {
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .register-button:hover {
+            background-color: #45a049;
+        }
+
+        .forgot-password {
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .forgot-password a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .social-account-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .social-accounts {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .social-button {
+            padding: 10px;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .social-button:hover {
+            background-color: #ddd;
+        }
+
+        .social-button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .agreement {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .agreement a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .agreement a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">Register</div>
+        <form action="/register" method="POST" class="form">
+            <input required="" class="input" type="email" name="email" id="email" placeholder="E-mail">
+            <input required="" class="input" type="password" name="password" id="password" placeholder="Password">
+            <input required="" class="input" type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password">
+            <input required="" class="input" type="text" name="phone" id="phone" placeholder="Phone Number">
+            <p>Already have account? <a href="/login">Log In</a></p>
+            <input class="register-button" type="submit" value="Register">
+        </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Form validation
+        const form = document.querySelector('.form');
+        const emailInput = document.querySelector('#email');
+        const passwordInput = document.querySelector('#password');
+        const confirmPasswordInput = document.querySelector('#confirm_password');
+        const phoneInput = document.querySelector('#phone');
+        
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent default form submission
+            
+            // Validate email format
+            if (!validateEmail(emailInput.value)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Check if passwords match
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                alert('Passwords do not match.');
+                return;
+            }
+            
+            // Validate phone number
+            if (!validatePhoneNumber(phoneInput.value)) {
+                alert('Please enter a valid phone number.');
+                return;
+            }
+            
+            alert('Registration successful!');
+            form.submit(); // Submit the form after validation
+        });
+
+        // Email validation function
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Phone number validation function
+        function validatePhoneNumber(phone) {
+            const phoneRegex = /^[0-9]{10,15}$/; // Adjust pattern based on requirements
+            return phoneRegex.test(phone);
+        }
+
+        // Social buttons click handler
+        document.querySelectorAll('.social-button').forEach((button) => {
+            button.addEventListener('click', () => {
+                const socialPlatform = button.classList.contains('google') ? 'Google' :
+                                       button.classList.contains('apple') ? 'Apple' :
+                                       'Twitter';
+                alert(`Redirecting to ${socialPlatform} login...`);
+                // Add redirect logic to the respective social login URL here
+            });
+        });
+    });
+</script>
+</body>
+</html>
+
